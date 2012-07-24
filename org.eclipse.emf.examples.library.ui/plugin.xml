@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            name="Training Category"
+            id="org.eclipse.emf.examples.library.ui">
+      </category>
+      <view
+            name="Training View"
+            icon="icons/sample.gif"
+            category="org.eclipse.emf.examples.library.ui"
+            class="org.eclipse.emf.examples.library.ui.views.TrainingView"
+            id="org.eclipse.emf.examples.library.ui.views.TrainingView">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="org.eclipse.jdt.ui.JavaPerspective">
+         <view
+               ratio="0.5"
+               relative="org.eclipse.ui.views.TaskList"
+               relationship="right"
+               id="org.eclipse.emf.examples.library.ui.views.TrainingView">
+         </view>
+      </perspectiveExtension>
+   </extension>
+   <extension
+         point="org.eclipse.help.contexts">
+      <contexts
+            file="contexts.xml">
+      </contexts>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.examples.library.ui.library"
+            name="Library">
+      </category>
+      <wizard
+            class="org.eclipse.emf.examples.library.ui.wizards.NewLibraryWizard"
+            id="org.eclipse.emf.examples.library.ui.librarywizard"
+            name="name">
+         <selection
+               class="org.eclipse.emf.examples.extlibrary.Library">
+         </selection>
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="org.eclipse.emf.examples.library.ui.newlibrary"
+            name="Library">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.emf.examples.library.ui.views.TrainingView">
+         <command
+               commandId="org.eclipse.emf.examples.library.ui.newlibrary"
+               label="Create Library"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.emf.examples.library.ui.handlers.LibraryCreationHandler"
+            commandId="org.eclipse.emf.examples.library.ui.newlibrary">
+      </handler>
+   </extension>
+
+</plugin>
